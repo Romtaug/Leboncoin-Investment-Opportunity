@@ -1,0 +1,78 @@
+{
+    "Name": "Leboncoin_Vente_Navigation",
+    "CreationDate": "2024-12-10",
+    "Commands": [
+        {
+            "Command": "open",
+            "Target": "https://www.leboncoin.fr/recherche?category=9&locations=d_95&real_estate_type=1,2&energy_rate=g,f,e,a,b,c,d,v&immo_sell_type=new,old&owner_type=all&order=asc",
+            "Value": "",
+            "Description": ""
+        },
+        {
+            "Command": "store",
+            "Target": "1",
+            "Value": "pageNumber",
+            "Description": ""
+        },
+        {
+            "Command": "label",
+            "Target": "StartLoop",
+            "Value": "",
+            "Description": ""
+        },
+        {
+            "Command": "pause",
+            "Target": "15874",
+            "Value": "",
+            "Description": "Pause aléatoire entre 7 et 20 secondes"
+        },
+        {
+            "Command": "verifyElementPresent",
+            "Target": "xpath=//nav//a[contains(@aria-label, 'Page suivante')]",
+            "Value": "",
+            "Description": "Vérifie la présence du bouton 'Page suivante'"
+        },
+        {
+            "Command": "gotoIf",
+            "Target": "!${!LastCommandOK}",
+            "Value": "EndScript",
+            "Description": "Si le bouton 'Page suivante' n'est pas présent, arrêter la boucle"
+        },
+        {
+            "Command": "mouseOver",
+            "Target": "xpath=//nav//a[contains(@aria-label, 'Page suivante')]",
+            "Value": "",
+            "Description": ""
+        },
+        {
+            "Command": "click",
+            "Target": "xpath=//nav//a[contains(@aria-label, 'Page suivante')]",
+            "Value": "",
+            "Description": ""
+        },
+        {
+            "Command": "executeScript_Sandbox",
+            "Target": "return Number(${pageNumber}) + 1;",
+            "Value": "pageNumber",
+            "Description": ""
+        },
+        {
+            "Command": "gotoLabel",
+            "Target": "StartLoop",
+            "Value": "",
+            "Description": ""
+        },
+        {
+            "Command": "label",
+            "Target": "EndScript",
+            "Value": "",
+            "Description": ""
+        },
+        {
+            "Command": "echo",
+            "Target": "Finished navigating through pages.",
+            "Value": "green",
+            "Description": ""
+        }
+    ]
+}
